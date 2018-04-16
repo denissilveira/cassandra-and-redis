@@ -1,4 +1,9 @@
 spring:
+  cache:
+    type: redis
+  redis:
+    host: 192.168.99.100
+    port: 32800
   activemq:
       broker-url: vm://embedded?broker.persistent=false,useShutdownHook=false
       in-memory: true
@@ -34,12 +39,7 @@ spring:
       time-to-live: 36000
 
 cassandra:
-  contactpoints=: 192.168.99.100
-  port: 32784
+  contactpoints: localhost
+  port: 9042
   keyspace: redisvscassandra
   basepackages: com.poc.cassandraandredis
-
-#spring.cache.type=redis
-#spring.redis.host=192.168.99.100
-#spring.redis.port=32790
-

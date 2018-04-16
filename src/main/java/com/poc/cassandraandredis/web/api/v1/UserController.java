@@ -43,7 +43,7 @@ public class UserController {
         service.sendMessageCreateUser(user);
     }
     
-    @Cacheable(value = "users", key = "#userId", unless = "#result.followers < 12000")
+    @Cacheable(value = "users", key = "#userId")
     @GetMapping("/user/{userId}")
     public Optional<User> findById(@PathVariable String userId) {
         return repository.findById(UUID.fromString(userId));
@@ -54,8 +54,10 @@ public class UserController {
         return repository.findByAge(age);
     }
     
+    @Cacheable(value = "users", key = "#name")
     @GetMapping("/users/findbyname")
     public Iterable<User> findByName(@RequestParam String name) {
+    	System.out.println("FindByName: " + name);
         return repository.findByName(name);
     }
 
